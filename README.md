@@ -1,3 +1,10 @@
+
+# {{PROBLEM}} Function Design Recipe
+
+Copy this into a `recipe.md` in your project and fill it out.
+
+## 1. Describe the Problem
+
 As an admin
 So that I can determine whether a user is old enough
 I want to allow them to enter their date of birth as a string in the format `YYYY-MM-DD`.
@@ -11,14 +18,6 @@ As an admin
 So that old enough users can be granted access
 I want to send a message to any user aged 16 or older to say that access has been granted.
 
-# {{PROBLEM}} Function Design Recipe
-
-Copy this into a `recipe.md` in your project and fill it out.
-
-## 1. Describe the Problem
-
-_Put or write the user story here. Add any clarifying notes you might have._
-
 ## 2. Design the Function Signature
 
 _Include the name of the function, its parameters, return value, and side effects._
@@ -26,19 +25,10 @@ _Include the name of the function, its parameters, return value, and side effect
 ```python
 # EXAMPLE
 
-def extract_uppercase(mixed_words):
-    """Extracts uppercase words from a string
+def age_checker(dob):
+    pass
 
-    Parameters: (list all parameters and their types)
-        mixed_words: a string containing words (e.g. "hello WORLD")
 
-    Returns: (state the return value and its type)
-        a list of strings, each one a word (e.g. ["WORLD"])
-
-    Side effects: (state any side effects)
-        This function doesn't print anything or have any other side-effects
-    """
-    pass # Test-driving means _not_ writing any code here yet.
 ```
 
 ## 3. Create Examples as Tests
@@ -49,46 +39,28 @@ _Make a list of examples of what the function will take and return._
 # EXAMPLE
 
 """
-Given a lower and an uppercase word
-It returns a list with the uppercase word
+check that access is granted for someone
+over age of 16 
 """
-extract_uppercase("hello WORLD") => ["WORLD"]
+age_checker("2009-01-01") # => "Access granted!"
 
 """
-Given two uppercase words
-It returns a list with both words
+under 16, denied access
 """
-extract_uppercase("HELLO WORLD") => ["HELLO", "WORLD"]
+age_checker("2015-01-01") # => "Access denied, you are (age) and you must be 16."
 
 """
-Given two lowercase words
-It returns an empty list
+one day less than being 16
 """
-extract_uppercase("hello world") => []
+birthdate = (todays_date - 16) + 1
+age_checker("2026-02-16") # => "Access denied, you are (age) and you must be 16."
 
 """
-Given a lower and a mixed case word
-It returns an empty list
+the day of the birthday (day turning 16)
 """
-extract_uppercase("hello WoRLD") => []
+birthdate = todays_date - 16
+age_checker(birthdate) # => "Access granted!"
 
-"""
-Given a lowercase word and an uppercase word with an exclamation mark
-It returns a list with the uppercase word, no exclamation mark
-"""
-extract_uppercase("hello WORLD!") => ["WORLD"]
-
-"""
-Given an empty string
-It returns an empty list
-"""
-extract_uppercase("") => []
-
-"""
-Given a None value
-It throws an error
-"""
-extract_uppercase(None) throws an error
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
